@@ -32,11 +32,13 @@ enum class EConsoleColor : WORD
     Success = FOREGROUND_GREEN | FOREGROUND_INTENSITY,
 };
 
+// -----------------------------------------------------------------------------------------------------
 void SetConsoleColor(HANDLE handle, EConsoleColor color)
 {
     SetConsoleTextAttribute(handle, WORD(color));
 }
 
+// -----------------------------------------------------------------------------------------------------
 ConsoleLogger::ConsoleLogger()
 {
     if(!AllocConsole())
@@ -59,12 +61,14 @@ ConsoleLogger::ConsoleLogger()
     m_outputHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
+// -----------------------------------------------------------------------------------------------------
 ConsoleLogger::~ConsoleLogger()
 {
     fclose(m_inStream);
     fclose(m_outStream);
 }
 
+// -----------------------------------------------------------------------------------------------------
 void ConsoleLogger::Log(ELogType type, const char* msg) const
 {
     switch(type)
@@ -93,6 +97,7 @@ void ConsoleLogger::Log(ELogType type, const char* msg) const
     SetConsoleColor(m_outputHandle, EConsoleColor::Default);
 }
 
+// -----------------------------------------------------------------------------------------------------
 void ConsoleLogger::Log(ELogType type, const wchar_t* msg) const
 {
     switch(type)
@@ -121,6 +126,7 @@ void ConsoleLogger::Log(ELogType type, const wchar_t* msg) const
     SetConsoleColor(m_outputHandle, EConsoleColor::Default);
 }
 
+// -----------------------------------------------------------------------------------------------------
 void ConsoleLogger::Logf(ELogType type, const char* msg, ...) const
 {
     va_list argumentList;
@@ -136,6 +142,7 @@ void ConsoleLogger::Logf(ELogType type, const char* msg, ...) const
     va_end(argumentList);
 }
 
+// -----------------------------------------------------------------------------------------------------
 void ConsoleLogger::Logf(ELogType type, const wchar_t* msg, ...) const
 {
     va_list argumentList;
