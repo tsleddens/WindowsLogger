@@ -14,6 +14,12 @@ target_link_libraries(${TARGET}
         WindowsLogger
 )
 
+#use minimal version of <windows.h>
+target_compile_definitions(${TARGET}
+    PRIVATE
+        WIN32_LEAN_AND_MEAN
+)
+
 #enable warnings
 target_compile_options(${TARGET}
     PRIVATE
