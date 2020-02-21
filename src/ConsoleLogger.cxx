@@ -49,15 +49,7 @@ ConsoleLogger::ConsoleLogger()
     freopen_s(&m_outStream, "CONOUT$", "w", stdout);
     freopen_s(&m_outStream, "CONOUT$", "w", stderr);
     freopen_s(&m_inStream, "CONIN$", "r", stdin);
-
-    std::ios::sync_with_stdio(true);
-
-    std::wcout.clear();
-    std::cout.clear();
-    std::wcerr.clear();
-    std::cerr.clear();
-    std::wcin.clear();
-    std::cin.clear();
+    
     m_outputHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
