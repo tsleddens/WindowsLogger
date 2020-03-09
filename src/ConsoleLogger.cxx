@@ -56,6 +56,9 @@ ConsoleLogger::ConsoleLogger()
 // -----------------------------------------------------------------------------------------------------
 ConsoleLogger::~ConsoleLogger()
 {
+#ifdef WINDOWS_LOGGER_ENABLE_SYSTEM_PAUSE 
+    system("pause");
+#endif
     fclose(m_inStream);
     fclose(m_outStream);
 }
